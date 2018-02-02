@@ -14,6 +14,9 @@ class BlogAuthor(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     bio = models.TextField(max_length=400, help_text="Enter your bio details here.")
+    
+    class Meta:
+        ordering = ["user","bio"]
 
     def get_absolute_url(self):
         """
