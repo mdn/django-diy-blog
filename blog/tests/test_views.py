@@ -4,7 +4,7 @@ from django.test import TestCase
 
 
 from blog.models import Blog, BlogAuthor
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.models import User #Blog author or commenter
 
 class BlogListView(TestCase):
