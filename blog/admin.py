@@ -23,7 +23,7 @@ class BlogCommentsInline(admin.TabularInline):
     max_num=0
 
 @admin.register(Blog)
-class Blog(admin.ModelAdmin):
+class BlogAdmin(admin.ModelAdmin):
     """
     Administration object for Blog models. 
     Defines:
