@@ -1,11 +1,9 @@
+"""Test all views."""
 from django.test import TestCase
-
-# Create your tests here.
-
-
 from blog.models import Blog, BlogAuthor
 from django.urls import reverse
-from django.contrib.auth.models import User #Blog author or commenter
+from django.contrib.auth.models import User  # Blog author or commenter.
+
 
 class BlogListView(TestCase):
     
@@ -17,7 +15,8 @@ class BlogListView(TestCase):
         
         number_of_blogs = 13
         for blog_num in range(number_of_blogs):
-           Blog.objects.create(name='Test Blog %s' % blog_num,author=blog_author,description='Test Blog %s Description' % blog_num)
+            Blog.objects.create(name='Test Blog %s' % blog_num, author=blog_author,
+                                description='Test Blog %s Description' % blog_num)
     
     def test_view_url_exists_at_desired_location(self): 
         resp = self.client.get('/blog/blogs/') 
@@ -36,5 +35,5 @@ class BlogListView(TestCase):
         resp = self.client.get(reverse('blogs'))
         self.assertEqual(resp.status_code, 200)
         self.assertTrue('is_paginated' in resp.context)
-        self.assertTrue(resp.context['is_paginated'] == True)
-        self.assertEqual( len(resp.context['blog_list']), 5)
+        self.assertTrue(resp.context['is_paginated'] is True)
+        self.assertEqual(len(resp.context['blog_list']), 5)

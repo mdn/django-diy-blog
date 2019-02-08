@@ -93,3 +93,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# VladyslavHnatchenko local files
+.idea/
+venv/
+migrations/
