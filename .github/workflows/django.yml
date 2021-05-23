@@ -20,13 +20,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         python manage.py collectstatic
-  
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Selamdur
-      run: echo "oğuzhan"
     - name: Run Tests
       run: |
         python manage.py test
