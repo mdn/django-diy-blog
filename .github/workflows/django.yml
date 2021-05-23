@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
     - name: Install Dependencies
@@ -20,6 +20,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         python manage.py collectstatic
+    - name: Selamdur
+      run: echo "oğuzhan"
     - name: Run Tests
       run: |
         python manage.py test
