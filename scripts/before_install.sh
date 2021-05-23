@@ -5,7 +5,7 @@ sudo yum update -y
 sudo yum install git -y
 sudo yum install python3-pip python3-devel python3-setuptools -y
 
-DIR="/home/ubuntu/app"
+DIR="/home/ec2-user/app"
 if [ -d "$DIR" ]; then
   echo "${DIR} exists"
 else
@@ -16,8 +16,5 @@ fi
 sudo chmod -R 777 /home/ec2-user/app
 cd /home/ec2-user/app
 
-
 pip3 install -r requirements.txt
-
-cd ..
 python3 manage.py migrate
