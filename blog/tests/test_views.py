@@ -38,3 +38,29 @@ class BlogListView(TestCase):
         self.assertTrue('is_paginated' in resp.context)
         self.assertTrue(resp.context['is_paginated'] == True)
         self.assertEqual( len(resp.context['blog_list']), 5)
+
+    def test_lists_all_blogs(self):
+        # Get third page and confirm it has (exactly) the remaining 3 items
+        resp = self.client.get(reverse('blogs'), query_params={'page': 3})
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(resp.context['is_paginated'])
+        self.assertEqual(len(resp.context['blog_list']), 3)
+
+
+class LogoutTest(TestCase):
+
+    def test_logout_uses_site_logged_out_template(self):
+        User.objects.create_user(username='testuser1', password='12345')
+        self.client.login(username='testuser1', password='12345')
+        resp = self.client.post(reverse('logout'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'registration/logged_out.html')
+
+
+class ContentSecurityPolicyTest(TestCase):
+
+    def test_csp_header_is_set(self):
+        resp = self.client.get(reverse('index'))
+        self.assertEqual(
+            resp.headers['Content-Security-Policy'],
+            "default-src 'self'; style-src 'self' https://cdn.jsdelivr.net")

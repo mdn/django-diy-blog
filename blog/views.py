@@ -51,7 +51,7 @@ class BlogListbyAuthorView(generic.ListView):
         Add BlogAuthor to context so they can be displayed in the template
         """
         # Call the base implementation first to get a context
-        context = super(BlogListbyAuthorView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # Get the blogger object from the "pk" URL parameter and add it to the context
         context['blogger'] = get_object_or_404(BlogAuthor, pk = self.kwargs['pk'])
         return context
@@ -90,7 +90,7 @@ class BlogCommentCreate(LoginRequiredMixin, CreateView):
         Add associated blog to form template so can display its title in HTML.
         """
         # Call the base implementation first to get a context
-        context = super(BlogCommentCreate, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         # Get the blog from id and add it to the context
         context['blog'] = get_object_or_404(Blog, pk = self.kwargs['pk'])
         return context
@@ -104,7 +104,7 @@ class BlogCommentCreate(LoginRequiredMixin, CreateView):
         #Associate comment with blog based on passed id
         form.instance.blog=get_object_or_404(Blog, pk = self.kwargs['pk'])
         # Call super-class form validation behaviour
-        return super(BlogCommentCreate, self).form_valid(form)
+        return super().form_valid(form)
 
     def get_success_url(self): 
         """
