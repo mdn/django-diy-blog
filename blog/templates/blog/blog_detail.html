@@ -6,9 +6,9 @@
 <p><strong>Post date</strong> {{ blog.post_date }}</p>
 <p><strong>Author:</strong> <a href="{% url 'blogs-by-author' blog.author.pk %}">{{ blog.author }}</a></p>
 <p><strong>Description:</strong></p>
-<p style="white-space:pre-wrap;">{{ blog.description }}</p>
+<p class="blog-text">{{ blog.description }}</p>
 
-<div style="margin-left:20px;margin-top:20px">
+<div class="ms-4 mt-4">
 <h4>Comments</h4>
 
 {% for comment in blog.blogcomment_set.all %}
@@ -17,7 +17,7 @@
 {% endfor %}
 <hr>
 {% if user.is_authenticated %}
-  <a href="{% url 'blog_comment' blog.id %}">Add a new comment</a></p>
+  <p><a href="{% url 'blog_comment' blog.id %}">Add a new comment</a></p>
 {% else %}
   <p><a href="{% url 'login'%}?next={{request.path}}">Login</a> to add a new comment</p>
 {% endif %} 
